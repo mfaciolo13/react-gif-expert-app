@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useFetchGifs } from "../hooks/useFetchGifs";
 import GifGridItem from "./GifGridItem";
 
-const GifGreed = ({ category }) => {
+const GifGrid = ({ category }) => {
   const { data: images, loading } = useFetchGifs(category);
 
   return (
@@ -11,18 +11,16 @@ const GifGreed = ({ category }) => {
       <h3 className="animate_animated animate__fadeIn">{category}</h3>
       {loading && <p className="animate_animated animate__flash">Loading...</p>}
       <div className="card-grid">
-        <ol>
-          {images.map((img) => (
-            <GifGridItem key={img.id} {...img} />
-          ))}
-        </ol>
+        {images.map((img) => (
+          <GifGridItem key={img.id} {...img} />
+        ))}
       </div>
     </>
   );
 };
 
-GifGreed.propTypes = {
+GifGrid.propTypes = {
   category: PropTypes.string.isRequired,
 };
 
-export default GifGreed;
+export default GifGrid;
